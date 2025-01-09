@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 30, 30, 30;
+  --primary: #0ea5e9;
+  --primary-2: #1176fa;
+  --secondary-1: #047d00;
+  --secondary-2: #a5fcac;
+  --inportant-1: #fba0a0;
+  --inportant-2: #ff4b4b;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to top,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+    background-repeat: no-repeat;
+}
+
+header{
+  grid-area: header;
+  border-bottom: var(--primary) 2px solid;
+}
+footer{
+  grid-area: footer;
+  border-top: var(--primary) 2px solid;
+}
+main{
+  grid-area: main;
+}
+aside{
+  grid-area: aside;
+}
+ul{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  padding-left: 20px;
+  padding-top: 15px;
+}
+ul > li > ul{
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+ul > li{
+  line-height: 25px;
+}
+ol{
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bold;
+  padding-left: 20px;
+  padding-top: 15px;
+}
+ol > li > ol{
+  font-weight: normal;
+  margin-bottom: 10px;
+}
+ol > li{
+  line-height: 25px;
+}
+li > p{
+  color: var(--secondary-2);
+}
+
+.radio {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border: 2px solid var(--primary);
+  border-radius: 50%;
+  transition-duration: 500ms;
+  cursor: pointer;
+}
+
+.radio:checked{
+  border-color: var(--secondary-1);
+  background-color: var(--secondary-2);
+}
+
+.checkbox {
+  appearance: none;
+  height: 20px;
+  width: 20px;
+  border: 2px solid var(--primary);
+  border-radius: 25%;
+  transition-duration: 500ms;
+  cursor: pointer;
+}
+
+.checkbox:checked{
+  border-color:var(--secondary-1);
+  background-color: var(--secondary-2);
+}
+
+.input{
+  width: 100%;
+  padding: 2px;
+
+  border: 3px solid var(--primary);
+  border-radius: 16px;
+  outline: none;
+
+  font-size: 16px;
+  font-family: monospace;
+
+  background : inherit;
+  background: transparent;
+  cursor: pointer;
+}
+
+.input:focus{
+  border: 3px solid var(--secondary-1);
+  background: var(--secondary-2);
+  color: black;
+}

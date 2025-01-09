@@ -1,0 +1,67 @@
+.pageGrid{
+  display: grid;
+  grid-template-columns: 1fr 4fr 2fr;
+  grid-template-areas:
+  "start start start"
+  "principal principal habilidades";
+  gap: 10px;
+}
+
+.start{
+  grid-area: start;
+  display: grid;
+  grid-template-columns: 1fr 4fr 2fr;
+  grid-template-areas:
+  "SVG myname myname";
+  justify-content: center;
+  gap: 10px;
+}
+
+.svg{
+  grid-area: SVG;
+  width: 128px;
+  height: 128px;
+  border-width: 2px;
+  border-radius: 9999px;
+  border-color: var(--primary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.myname{
+  grid-area: myname;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.myname > h2{
+  color: var(--inportant-1);
+}
+
+.principal{
+  grid-area: principal;
+}
+.habilidades{
+  grid-area: habilidades;
+}
+
+@media (max-width: 460px) {
+  .start{
+    grid-template-areas:
+    "myname myname myname"
+  }
+}
+
+@media (max-width: 460px) {
+  .svg {
+    display: none;
+  }
+  .pageGrid{
+    grid-template-areas:
+    "start start start"
+    "principal principal principal"
+    "habilidades habilidades habilidades";
+  }
+}

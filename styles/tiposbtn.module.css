@@ -1,0 +1,20 @@
+.button{
+  width: 100%;
+  height: auto;
+  padding: 0.5rem;
+  border: var(--primary) 2px solid ;
+  border-radius: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-content: middle;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 50%, var(--primary) 50%);
+  transition: 0.5s ease-out 0s;
+  background-size: 200.22% auto;
+}
+
+.button:hover{
+  scale: 1.05;
+  background-position: -99.99% 0;
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0) 50%, var(--primary) 50%);
+}

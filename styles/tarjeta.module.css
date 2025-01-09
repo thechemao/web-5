@@ -1,0 +1,72 @@
+.contenedor{
+  background-color: #1f2937;
+  border: 2px solid transparent;
+  border-color: #06b6d4;
+  color: #06b6d4;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  transition: all 0.3s ease;
+  transform: scale(1);
+  border-radius: 0.5rem;
+  position: relative;
+  z-index: 0;
+
+  display: grid;
+  grid-template-columns: 96px 1fr 1fr;
+  grid-template-areas:
+    "image titulo titulo"
+    "image descripcion descripcion"
+    "image fecha tipos";
+}
+
+@media (max-width: 620px){
+  .contenedor {
+    grid-template-areas:
+    "titulo titulo titulo"
+    "descripcion descripcion descripcion"
+    "fecha . tipos";
+  }
+  .image{
+    display: none;
+  }
+  .tipos{
+    display: none;
+  }
+}
+
+.image{
+  grid-area: image;
+}
+.titulo{
+  grid-area: titulo;
+  color: var(--inportant-1);
+}
+.descripcion{
+  grid-area: descripcion;
+  text-align: justify;
+}
+.fecha{
+  grid-area: fecha;
+}
+.tipos{
+  grid-area: tipos;
+}
+
+.fecha .tipos{
+  text-align: center;
+}
+
+.contenedor:hover{
+  background-color: #06b6d4;
+  color: #1f2937;
+  box-shadow: 0 0 10px #06b6d4, 0 0 20px #06b6d4;
+  z-index: 10;
+  .titulo{
+    color: #fff;
+    text-shadow:
+      -1px -1px 0 #000, /* top-left shadow */
+      1px -1px 0 #000,  /* top-right shadow */
+      -1px 1px 0 #000,  /* bottom-left shadow */
+      1px 1px 0 #000;  /* bottom-right shadow */
+  }
+}

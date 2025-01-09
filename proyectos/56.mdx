@@ -1,0 +1,133 @@
+import Netting from "@/components/post/netting/menu";
+
+# SubNetting y SuperNetting
+
+En el vasto y dinámico mundo de las redes informáticas, la optimización y gestión eficiente de direcciones IP desempeñan un papel fundamental para asegurar la conectividad fluida y segura entre dispositivos.
+Es en este contexto que entran en juego dos conceptos esenciales: el subnetting y el supernetting. Estas prácticas permiten dividir y agrupar direcciones IP de manera estratégica, facilitando la administración
+de redes de cualquier tamaño y complejidad.
+
+## ¿Qué es el SubNetting y SuperNetting?
+
+El subnetting, también conocido como subdivisión de redes, es una técnica que divide una red IP en subredes más pequeñas. Esta división proporciona beneficios significativos en términos de eficiencia y seguridad.
+Al dividir una red en subredes más pequeñas, se pueden asignar direcciones IP de manera más eficiente, reducir el tráfico de red y mejorar la seguridad al limitar la exposición de los dispositivos a posibles
+vulnerabilidades.
+
+Por otro lado, el supernetting, o agregación de redes, es el proceso opuesto al subnetting. Consiste en combinar varias redes IP más pequeñas en una sola red más grande. Esta técnica se utiliza comúnmente en
+enrutamiento para simplificar las tablas de enrutamiento y reducir la carga en los dispositivos de red, lo que resulta en un enrutamiento más eficiente y rápido.
+
+## ¿Cómo se calcula?
+
+Para calcular tanto el SubNetting como el SuperNetting, es necesario contar con cierta información básica:
+
+1. **La Máscara de Red:** Esta máscara determina los bits que pertenecen a la red.
+2. **Dirección IP:** La dirección IP consiste en 4 bytes que identifican a un host.
+3. Cantidad de Redes necesarias.
+4. **Código binario:** Se realizarán operaciones lógicas, conteo y conversión a decimal.
+
+## Identificar los bits de red y host
+
+Este paso es fundamental tanto para el subnetting como para el supernetting. Nos basaremos en la máscara, que puede presentarse de dos maneras distintas:
+
+1. IP / Máscara: como número de bits, por ejemplo, IP/9.
+2. Como una IP: por ejemplo, 255.128.0.0.
+
+En ambos casos, se utilizan 9 bits. Esto se puede determinar al convertirlos a binario.
+
+### Estilo 1:
+
+Con un valor de 9, indicando los bits que identifican a la red, en una IPv4 de 32 bits, representaremos nueve 1 seguidos de ceros hasta llegar a 32, dividiendo cada 8 bits con un punto:
+
+```js
+- 11111111.10000000.00000000.00000000
+```
+
+### Estilo 2:
+
+Convertiremos los números a binario manteniendo los puntos de separación. Por ejemplo, 255 se convierte en 11111111 y 128 en 10000000, lo que resulta en:
+
+```js
+- 11111111.10000000.00000000.00000000
+```
+
+Observamos que ambas máscaras son iguales. Esto nos sirve para determinar los bits de host o de red para el subnetting o supernetting. Sabiendo los bits de la máscara, podemos identificar qué bits de
+una IP identifican a una red.
+
+Supongamos que tenemos la ID de red **172.127.0.0**, utilizando la máscara 255.255.255.0 o /24. Al colocar la ID de red sobre la máscara, podemos ver qué bits son de red y cuáles de host: los bits de
+host son los 0 y los de red son los 1.
+
+```js
+- IP:      10101100.01111111.00000000.00000000
+- Máscara: 11111111.11111111.11111111.00000000
+```
+
+## Subnetting
+
+### ¿Qué bits necesitamos?
+
+Supongamos que queremos crear 6 redes. Buscamos un número que, al ser una base 2, dé 6 o más. En este caso, el resultado es 3, porque 2^(3) = 8. Esto significa que necesitaremos 3 bits de la parte del host. La máscara resultante será:
+
+```js
+- 11111111.11111111.11111111.-111-00000
+```
+
+### ¿Y qué redes obtenemos? ¿Cómo las calculamos?
+
+Con 3 bits disponibles, obtendremos todas las combinaciones posibles, que en este caso son 8. De estas, seleccionaremos 6 y sustituiremos los 3 bits correspondientes en la IP. La nueva máscara será /24 + 3, equivalente a /27.
+
+```js
+- 10101100.01111111.00000000.00000000/27
+- 10101100.01111111.00000000.00100000/27
+- 10101100.01111111.00000000.01000000/27
+- 10101100.01111111.00000000.01100000/27
+- 10101100.01111111.00000000.10000000/27
+- 10101100.01111111.00000000.10100000/27
+```
+
+Al convertir esto a decimal, obtenemos nuestras 6 nuevas redes, todas con máscara 255.255.255.224 o /27.
+
+```js
+- 172.127.0.0
+- 172.127.0.32
+- 172.127.0.64
+- 172.127.0.96
+- 172.127.0.128
+- 172.127.0.160
+```
+
+## Supernetting
+
+### ¿Qué bits vamos a utilizar?
+
+Al calcular los bits necesarios, buscamos un número que sea potencia de 2 de redes (2, 4, 8, 16, etc.). Por ejemplo, si necesitamos 4 redes, buscamos un número que, en base 2, sea 4,
+resultando en 2 bits. En este caso, tomaremos las dos redes restantes, las combinaciones 110 y 111. Las IPs resultantes son las siguientes:
+
+```js
+- 10101100.01111111.00000000.11000000/27
+- 10101100.01111111.00000000.11100000/27
+```
+
+### ¿Y qué red obtenemos?
+
+Al unir dos redes, necesitamos tomar solo un bit, y el siguiente bit no debe cambiar. En este caso, se cumple. Por tanto, para finalizar, establec
+
+emos el último bit a 0 y eliminamos el último bit de la máscara, cambiando de /27 a /26.
+
+```js
+- IP:        10101100.01111111.00000000.11000000
+- Máscara:   11111111.11111111.11111111.11000000
+```
+
+Al convertir esto a decimal, obtenemos la IP 172.127.0.192 con máscara 255.255.255.192 o /26. Estos son los principios fundamentales del SubNetting y SuperNetting, técnicas vitales para la eficiencia y
+seguridad de tus redes.
+
+## Calculadora de Subnetting y Supernetting
+
+Aquí tienes una herramienta para calcular el Subnetting y el Supernetting de manera rápida y precisa. Mejora la gestión de tus redes informáticas y garantiza una conectividad eficiente y segura entre dispositivos.
+¡Optimiza tu red ahora!
+
+<Netting/>
+
+Esta herramienta te permite calcular tanto el Subnetting como el Supernetting con facilidad. Divide tus redes en subredes más pequeñas o agrupa varias redes en una sola para simplificar tu enrutamiento y mejorar el
+rendimiento de tu red.
+
+¡Prueba nuestra herramienta de cálculo de Subnetting y Supernetting y lleva la eficiencia y seguridad de tus redes al siguiente nivel!

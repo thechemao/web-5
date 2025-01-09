@@ -1,0 +1,117 @@
+import RaidCalc from "@/components/post/RaidCalculator/RaidCalc";
+
+# ¿Qué es un RAID y como lo calculamos?
+
+RAID, o “Redundant Array of Independent Disks”, es una tecnología de almacenamiento que combina múltiples unidades de disco
+para mejorar la redundancia, velocidad o ambas. Este enfoque aumenta la confiabilidad y el rendimiento del sistema de
+almacenamiento, ideal para entornos empresariales que requieren alta disponibilidad y protección de datos.
+
+## Tipos de RAID
+
+### 1. RAID 0:
+RAID 0, conocido como "Striping", combina múltiples discos para mejorar el rendimiento al distribuir los datos entre ellos.
+Aunque ofrece un aumento significativo en velocidad, no proporciona redundancia de datos, lo que significa que la pérdida de
+un disco puede resultar en la pérdida total de los datos.
+
+![Esquema RAID 0](https://26s5nnor6zhqxavm.public.blob.vercel-storage.com/raids/RAID0-oyRHdoOGIStTktAIY23SWZicsa8XPt.webp)
+### 2. RAID 1:
+RAID 1, llamado "Mirroring", duplica los datos en dos discos, brindando una copia exacta en cada uno. Esto garantiza una alta
+redundancia y seguridad de los datos, ya que, si un disco falla, los datos permanecen intactos en el otro disco. Sin embargo,
+este tipo de RAID no mejora el rendimiento.
+
+![Esquema RAID 1](https://26s5nnor6zhqxavm.public.blob.vercel-storage.com/raids/RAID1-5tuYL4jItnJGIwnEAX1cFH7ggPPXKE.webp)
+
+### 3. RAID 5:
+RAID 5 utiliza un esquema de "Striping with Parity", donde los datos y la paridad se distribuyen a través de múltiples discos.
+Esto ofrece tanto rendimiento como redundancia de datos. Si un disco falla, los datos pueden reconstruirse usando la información
+de paridad almacenada en otros discos. Es una opción popular para aplicaciones que requieren un equilibrio entre rendimiento y
+protección de datos.
+
+![Esquema RAID 5](https://26s5nnor6zhqxavm.public.blob.vercel-storage.com/raids/RAID5-iLz5jAHLENbtBoEu8aKfXPBx0C0VGp.webp)
+
+### 4. RAID 6:
+RAID 6 es una extensión de RAID 5 que proporciona una mayor redundancia al agregar un segundo conjunto de paridad. Esto significa
+que puede tolerar la falla simultánea de hasta dos discos sin perder datos. Aunque ofrece una alta protección de datos, puede
+tener un rendimiento ligeramente menor debido a la sobrecarga de cálculos de paridad adicionales.
+
+![Esquema RAID 6](https://26s5nnor6zhqxavm.public.blob.vercel-storage.com/raids/RAID6-EgyPy8CQCRb9WNJq0R6GmgTPfgGfeS.webp)
+<br/>
+también podemos encontrar RAID combinando dos de los anteriores como puede ser el 10 que es una combinación de 1+0 realizándose
+primero el RAID 0 y luego el RAID 1
+
+### 5. RAID 10 (RAID 1+0):
+RAID 10 (RAID 1+0):
+RAID 10, a menudo conocido como RAID 1+0, es una combinación de RAID 1 y RAID 0. En este arreglo, los datos se distribuyen en
+conjuntos de discos (RAID 0) y luego se replica en espejos (RAID 1). Esto proporciona tanto alta redundancia como alto rendimiento,
+ya que combina la capacidad de recuperación de RAID 1 con la velocidad de RAID 0. Si un disco falla, los datos pueden recuperarse
+de su espejo correspondiente. RAID 10 ofrece un equilibrio sólido entre rendimiento y seguridad, siendo una opción popular para
+entornos donde la integridad de los datos y el rendimiento son críticos.
+
+![Esquema RAID 10](https://26s5nnor6zhqxavm.public.blob.vercel-storage.com/raids/RAID10-pJl2VLUJ8ncujRl6WO0DGwJY5Y4TzZ.webp)
+### 6. RAID 50 (RAID 5+0):
+RAID 50 es una combinación de RAID 5 y RAID 0. En este esquema, se crea un conjunto de RAID 0 con varios conjuntos de RAID 5.
+Ofrece una buena combinación de rendimiento y redundancia, adecuada para aplicaciones que necesitan un alto rendimiento y
+tolerancia a fallos.
+
+![Esquema RAID 50](https://26s5nnor6zhqxavm.public.blob.vercel-storage.com/raids/RAID50-DtybS8H54JU73hC0vOSA1HF4wdrxEG.webp)
+### 7. RAID 60 (RAID 6+0):
+RAID 60 es similar a RAID 50, pero agrega una capa adicional de paridad. Combina múltiples conjuntos de RAID 6 con RAID 0.
+Proporciona una mayor protección de datos y tolerancia a fallos que RAID 50, pero puede requerir más discos y recursos de cálculo.
+
+![Esquema RAID 60](https://26s5nnor6zhqxavm.public.blob.vercel-storage.com/raids/RAID60-hGNme6JSktHCeKH5nRtsEvRPxrrcaF.webp)
+## Como calculamos la capacidad:
+Al diseñar un sistema RAID (Redundant Array of Independent Disks), es crucial entender cómo se relaciona el número de discos y el
+tipo de RAID con la capacidad de almacenamiento efectiva. La capacidad efectiva se ve afectada por la redundancia de datos
+proporcionada por el RAID, que puede ser en forma de paridad o duplicación de datos.
+<br/>
+La fórmula básica para calcular la capacidad de almacenamiento en un sistema RAID es:
+
+$$
+\text {Capacidad }{Efectiva} = \frac {d-n}{d}
+$$
+
+- **d** es el número de discos por bloque.
+- **b** es el número de bloques.
+- **n** denota el número de discos dedicados a la paridad o redundancia.
+  - **RAID 0:** 0 discos de paridad
+  - **RAID 1:** d-1 discos de redundancia
+  - **RAID 5**: 1 discos de paridad
+  - **RAID 6:** 2 discos de paridad
+
+Esta fórmula nos da el porcentaje de discos utilizados para almacenaje por lo cual al multiplicado por el número de discos y la
+capacidad de ellos (en caso de varias capacidades la menor de ellas) nos da la capacidad que vamos a obtener a hacer el RAID.
+<br/>
+la formula quedaría tal que así:
+
+$$
+\text {Total} = \frac {d-n}{d} \times d \times \text c
+$$
+
+### calculo en RAIDs complejos:
+En los sistemas RAID complejos, que son la unión de dos RAID, se introduce un factor adicional: el número de bloques en los que se
+divide el primer RAID. Para calcular la capacidad total que obtendremos en este caso, utilizaremos dos veces la fórmula anterior.
+Una vez para determinar el número de bloques que utilizaremos y otra vez para calcular la capacidad de cada bloque. Al multiplicar
+estos dos valores, obtenemos la capacidad total del sistema.
+<br/>
+La fórmula resultante es la siguiente:
+$$
+\text {Total} = \left( d - N_d \over d \times d \right) \atop \times
+\left( b - N_b \over b \times b \right) \times \text C
+$$
+Donde:
+- **d** es el número de discos por bloque.
+- **b** es el número de bloques.
+- **$ N_d $** es la paridad o redundancia del segundo RAID.
+- **$ N_b $** es la paridad del primer RAID.
+- **C** es la capacidad de almacenamiento de cada disco en el arreglo.
+
+Esta fórmula nos permite calcular la capacidad total en sistemas RAID complejos, teniendo en cuenta la distribución de
+la redundancia en los diferentes niveles del arreglo.
+
+## calculadora RAID:
+Ahora que entiendes qué es un sistema RAID y cómo calcular su capacidad, estás mejor preparado para configurar tu propio
+almacenamiento. Te presento una calculadora de RAID que simplificará tu planificación y te ayudará a elegir el mejor tipo de RAID
+para tu proyecto, ya sea maximizando la capacidad, mejorando la velocidad o priorizando la seguridad de tus datos. ¡Aprovecha al
+máximo tus recursos y garantiza el éxito de tu proyecto con esta herramienta!
+
+<RaidCalc/>
