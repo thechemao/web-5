@@ -5,7 +5,7 @@ import styles from '@/styles/layout.module.css'
 
 export const metadata = {
   title: 'posts',
-  description: 'en esta pagina podrás encontrar o buscar los post por interés',
+  description: 'En esta pagina podrás encontrar o buscar los post por interés',
 }
 
 export default function PostsLayout({ children }) {

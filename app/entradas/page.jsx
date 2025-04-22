@@ -39,6 +39,7 @@ async function getTypes(){
       await sql.query(sqlQuery);
     return result.rows;
   } catch (error) {
+    console.log(error)
     return [];
   }
 }

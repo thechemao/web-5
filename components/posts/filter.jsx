@@ -1,6 +1,6 @@
 "use client"
 import { useSearchParams, usePathname, useRouter } from "next/navigation"
-import { useDebouncedCallback } from "use-debounce"
+import { useDebouncedCallback } from 'use-debounce';
 
 export default function Filtros({tipos}) {
   const SearchParams = useSearchParams()
@@ -57,7 +57,7 @@ export default function Filtros({tipos}) {
   }
 
   return(
-    <div className="p-3 w-full">
+    <div className="w-full">
       <form>
         <label className="mb-8 text-sm" htmlFor="search">Buscar: </label ><br />
         <input type="text" id="search"
@@ -96,7 +96,7 @@ export default function Filtros({tipos}) {
         />
         <label htmlFor="desc" className="pl-2 text-[16px] font-mono">descendente</label>
 
-        <button onClick={(e) => handleclickClear(e)} value={'Todo'} className="border-2 rounded-lg border-sky-500 hover:bg-slate-500 duration-200 w-full my-4 p-2 text-sm">Limpiar</button>
+        <button onClick={(e) => handleclickClear(e)} value={'Todo'} className="border-2 rounded-lg border-sky-500 hover:bg-slate-500 duration-200 w-full mt-4 p-2 text-sm">Limpiar</button>
       </form>
     </div>
   )

@@ -31,7 +31,6 @@
       "header header header"
       "main main aside"
       "footer footer footer";
-    row-gap: 2vh;
     column-gap: 1vw;
   }
 

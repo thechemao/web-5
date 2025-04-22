@@ -3,7 +3,7 @@ import WebLinks from "./WebLinks";
 
 export default function Pie() {
   return(
-    <footer className="bg-stone-800 flex flex-col justify-center items-center text-xs p-3 mt-4">
+    <footer className="bg-stone-800 flex flex-col justify-center items-center text-xs p-3">
       <div className="flex flex-row justify-center text-xs max-sm:hidden gap-4">
         <WebLinks social/>
       </div>

@@ -1,4 +1,3 @@
-import dynamic from 'next/dynamic'
 import { sql } from '@vercel/postgres'
 
 async function getPostMeta(request) {
@@ -6,14 +5,15 @@ async function getPostMeta(request) {
   try {
     const result =
       await sql`SELECT * FROM posts WHERE id = ${data};`;
-    return result.rows;
+    return result.rows[0];
   } catch (error) {
     return error;
   }
 }
 
 export async function generateMetadata({ params }) {
-  const meta = (await getPostMeta(params.slug))[0]
+  const { slug } = await params
+  const meta = (await getPostMeta(slug))
   return {
     title: meta?.title? meta.title : 'titulo post',
     description: meta?.descripcion? meta.descripcion : 'descripción',
@@ -21,14 +21,19 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export default function Post ({ params }) {
-    const Proyecto = dynamic(() => import(`@/proyectos/${params.slug}.mdx`))
+export default async function Post ({ params }) {
+    const { slug } = await params
+    const { default: Post } = await import(`../../../proyectos/${slug}.mdx`)
 
     return (
       <>
         <main className="font-sans xl:mx-64 lg:mx-32 h-max my-2 p-2 md:py-4 md:p-0">
-          <Proyecto/>
+          <Post/>
         </main>
       </>
     );
+}
+
+export function generateStaticParams() {
+  return [{ slug: 'welcome' }, { slug: 'about' }]
 }

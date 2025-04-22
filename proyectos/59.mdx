@@ -1,4 +1,4 @@
-import RaidCalc from "@/components/post/RaidCalculator/RaidCalc";
+import RaidCalc from "../components/post/RaidCalculator/RaidCalc";
 
 # ¿Qué es un RAID y como lo calculamos?
 
@@ -67,7 +67,7 @@ proporcionada por el RAID, que puede ser en forma de paridad o duplicación de d
 La fórmula básica para calcular la capacidad de almacenamiento en un sistema RAID es:
 
 $$
-\text {Capacidad }{Efectiva} = \frac {d-n}{d}
+\text {Capacidad}{Efectiva} = \frac {d-n}{d}
 $$
 
 - **d** es el número de discos por bloque.
@@ -94,10 +94,11 @@ Una vez para determinar el número de bloques que utilizaremos y otra vez para c
 estos dos valores, obtenemos la capacidad total del sistema.
 <br/>
 La fórmula resultante es la siguiente:
+
 $$
-\text {Total} = \left( d - N_d \over d \times d \right) \atop \times
-\left( b - N_b \over b \times b \right) \times \text C
+\text Total = \left( d-N_d \over d \times d \right) \times \left( b-N_b \over b \times b \right) \times \text C
 $$
+
 Donde:
 - **d** es el número de discos por bloque.
 - **b** es el número de bloques.

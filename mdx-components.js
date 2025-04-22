@@ -1,8 +1,8 @@
 import Link from 'next/link';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import vs from 'react-syntax-highlighter/dist/cjs/styles/prism/vsc-dark-plus';
-import style from '@/styles/post.module.css'
-import Image from 'next/image';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+import vs from 'react-syntax-highlighter/dist/styles/atom-one-dark';
+import style from '@/styles/post.module.css' 
+import Image from 'next/image'; 
 
 const componentes = {
 	h1: ({...props }) => (
@@ -62,17 +62,17 @@ const componentes = {
 	li: ({...props }) => (
 		<li className={style.Li} {...props} />
 	),
-  code: ({ className, children}) => {
-    const langclass = className.split('-')[1]
-    return (
-      <SyntaxHighlighter language={langclass} style={vs} className={style.Code}>
-        {children}
-      </SyntaxHighlighter>
-    );
-  },
-  pre: ({children}) => (
-    <>{children}</>
-  ),
+	code: ({ className, children}) => {
+		const langclass = className.split('-')[1]
+		return (
+			<SyntaxHighlighter language={langclass} style={vs} className={style.Code}>
+				{children}
+			</SyntaxHighlighter>
+		);
+	},
+	pre: ({children}) => (
+		<>{children}</>
+	),
 	table: ({...props }) => (
 		<div className={style.TableDiv}>
 			<table className={style.Table} {...props} />
@@ -96,10 +96,10 @@ const componentes = {
 			{...props}
 		/>
 	),
-  img: ({alt, ...props}) => (
+  	img: ({alt, ...props}) => (
 		<Image
-      width={640}
-      height={360}
+     	 	width={640}
+      		height={360}
 			{...props}
 			className={style.Image}
 			alt={alt}

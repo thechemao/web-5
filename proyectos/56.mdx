@@ -1,4 +1,4 @@
-import Netting from "@/components/post/netting/menu";
+import Netting from "../components/post/netting/menu";
 
 # SubNetting y SuperNetting
 
@@ -108,9 +108,8 @@ resultando en 2 bits. En este caso, tomaremos las dos redes restantes, las combi
 
 ### ¿Y qué red obtenemos?
 
-Al unir dos redes, necesitamos tomar solo un bit, y el siguiente bit no debe cambiar. En este caso, se cumple. Por tanto, para finalizar, establec
-
-emos el último bit a 0 y eliminamos el último bit de la máscara, cambiando de /27 a /26.
+Al unir dos redes, necesitamos tomar solo un bit, y el siguiente bit no debe cambiar. En este caso, se cumple. Por tanto, para finalizar, 
+establecemos el último bit a 0 y eliminamos el último bit de la máscara, cambiando de /27 a /26.
 
 ```js
 - IP:        10101100.01111111.00000000.11000000

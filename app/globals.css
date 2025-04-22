@@ -14,6 +14,10 @@
   --inportant-2: #ff4b4b;
 }
 
+.katex-html{
+  display: none;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
