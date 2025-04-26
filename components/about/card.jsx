@@ -1,5 +1,6 @@
 import { cards } from "@/components/about/cards_data"
 import { Roboto } from "next/font/google"
+import Image from "next/image"
 
 const robotoFont = Roboto({ subsets: ['latin'], weight: ['400'] })
 
@@ -13,9 +14,10 @@ export default function Card({page}){
           return(
             <div 
               key={"card-"+id}
-              className="w-full lg:w-1/5 md:w-1/3 sm:w-1/2 h-min bg-white/10 backdrop-blur-md text-white border border-sky-500 rounded-xl p-4 shadow-md shadow-sky-800 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl hover:shadow-sky-400 hover:border-white"
+              className="flex flex-row items-center justify-start gap-2 w-full lg:w-1/5 md:w-1/3 sm:w-1/2 h-min bg-white/10 backdrop-blur-md text-white border border-sky-500 rounded-xl p-4 shadow-md shadow-sky-800 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg hover:shadow-sky-600 hover:border-white"
             >
-              {item.name}
+              {item.icon? <Image src={item.icon} width={64} height={64}  alt="icon" className="h-16l"/> : null}
+              <p>{item.name}</p>
             </div>
           )
         }):

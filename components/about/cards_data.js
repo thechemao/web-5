@@ -8,32 +8,32 @@ export const cards =
   {  
     title: "Aptitudes",
     items: [
-      { name: 'Trabajo en equipo', icon: '',},
-      { name: 'Resolutivo', icon: '' },
-      { name: 'Autoaprendizaje', icon: '' },
-      { name: 'Adaptable', icon: ''}
+      { name: 'Trabajo en equipo', icon: '/about-src/aptitudes/team-work.svg',},
+      { name: 'Resolutivo', icon: '/about-src/aptitudes/resolver.svg' },
+      { name: 'Autodidacta', icon: '/about-src/aptitudes/autodidacta.svg' },
+      { name: 'Adaptable', icon: '/about-src/aptitudes/adaptable.svg'}
     ]
   },
   { 
     title: "Tecnologias",
     items: [
-      { name: 'cisco', icon: '' },
-      { name: 'js', icon: '' },
-      { name: 'HTML', icon: '' },
-      { name: 'CSS', icon: '' },
-      { name: 'tailwind', icon: '' },
-      { name: 'SQL', icon: '' },
-      { name: 'Windows', icon: '' },
-      { name: 'Linux', icon: '' },
+      { name: 'cisco', icon: '/about-src/tecnologias/cisco.svg' },
+      { name: 'js', icon: '/about-src/tecnologias/js.svg' },
+      { name: 'HTML', icon: '/about-src/tecnologias/html.svg' },
+      { name: 'CSS', icon: '/about-src/tecnologias/css.svg' },
+      { name: 'tailwind', icon: '/about-src/tecnologias/tailwind.svg' },
+      { name: 'SQL', icon: '/about-src/tecnologias/sql.svg' },
+      { name: 'Windows', icon: '/about-src/tecnologias/windows.svg' },
+      { name: 'Linux', icon: '/about-src/tecnologias/linux.svg' },
     ]
   }, 
   {  
     title: "Experiencias",
     items: [
-      { name: "sklum", icon: "", descripcion: ""},
-      { name: "OmegaTechnology", icon: "", descripcion: ""},
-      { name: "Hospital", icon: "", descripcion: ""},
-      { name: "CVSkills", icon: "", descripcion: ""},
+      { name: "sklum", icon: "/about-src/logos/sklum.svg", descripcion: ""},
+      { name: "OmegaTechnology", icon: "/about-src/logos/omegatech.jpg", descripcion: ""},
+      { name: "Hospital", icon: "/about-src/logos/GVA.svg", descripcion: ""},
+      { name: "CVSkills", icon: "/about-src/logos/skills.png", descripcion: ""},
     ]
   },
   {
@@ -51,9 +51,9 @@ export const cards =
   {
     title: "Idiomas",
     items: [
-      { name: "ingles (B1)", icon: ""},
-      { name: "Español", icon: ""},
-      { name: "Valenciano", icon: ""},
+      { name: "ingles (B1)", icon: "/about-src/idiomas/ingles.svg"},
+      { name: "Español", icon: "/about-src/idiomas/español.svg"},
+      { name: "Valenciano", icon: "/about-src/idiomas/valenciano.svg"},
     ]
   }
 ];
