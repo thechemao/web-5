@@ -16,7 +16,7 @@ async function getMoreProyectos(request){
   if (data?.search) {
     const parameternumber = (parametersArray.length > 0? '$2' : '$1')
     parametersArray.push(data.search)
-    sqlQuery += ` AND plainto_tsquery(${parameternumber}) @@ to_tsvector(coalesce(title,\'\') || \' \' || coalesce(descripcion,\'\'))`
+    sqlQuery += ` AND plainto_tsquery(${parameternumber}) @@ to_tsvector(coalesce(title_show,\'\') || \' \' || coalesce(descripcion,\'\'))`
   }
   if(data?.orderMethod == 'asc'){
     sqlQuery += ' ORDER BY post_date ASC;'
@@ -27,7 +27,8 @@ async function getMoreProyectos(request){
     const result = await pool.query(sqlQuery, parametersArray);
     return result.rows;
   } catch (error) {
-    return error;
+    console.log(error)
+    return [] // Return an empty array in case of error;
   }
 }
 
@@ -49,6 +50,7 @@ export default async function Posts({searchParams}) {
   const iniCont = (Number(params.page) - 1) * 8
   const endCont = iniCont + 8
   let contenido = []
+  console.log(res)
   if (res.length > 7){
     contenido = res.slice(iniCont, endCont)
   }

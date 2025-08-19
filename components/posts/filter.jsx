@@ -57,16 +57,6 @@ export default function Filtros({tipos}) {
     replace(`${pathName}?${params.toString()}`)
   }
 
-  const handleSubmit = (event) => {
-    const value = event.target.value
-    console.log("send submit")
-    console.log(value)
-    event.preventDefault()
-    //handleChangeSearch()
-    //handleChangeOrderMethod()
-    //handleChangeType()
-  }
-
   return(
     <div className="w-full">
       <label className="mb-8 text-sm" htmlFor="search">Buscar: </label ><br />

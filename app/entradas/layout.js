@@ -4,7 +4,7 @@ import PagesAside from '@/components/posts/aside-Posts'
 import styles from '@/styles/layout.module.css'
 
 export const metadata = {
-  title: 'posts',
+  title: 'Entradas',
   description: 'En esta pagina podrás encontrar o buscar los post por interés',
 }
 
