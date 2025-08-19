@@ -1,10 +1,9 @@
-import { sql } from '@vercel/postgres'
+import pool from "@/lib/db";
 
 async function getPostMeta(request) {
   const data = request
   try {
-    const result =
-      await sql`SELECT * FROM posts WHERE id = ${data};`;
+    const result = await pool.query(`SELECT * FROM posts WHERE id = $1;`, [data]);
     return result.rows[0];
   } catch (error) {
     return error;

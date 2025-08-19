@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import SyntaxHighlighter from 'react-syntax-highlighter';
-import vs from 'react-syntax-highlighter/dist/styles/atom-one-dark';
+import vs from 'react-syntax-highlighter/dist/esm/styles/hljs/atom-one-dark';
 import style from '@/styles/post.module.css' 
 import Image from 'next/image'; 
 
