@@ -42,7 +42,7 @@ export default async function sitemap() {
   ];
 
   const postEntries = pages.map((page) => ({
-    url: `${baseUrl}/post/${page.id}`,
+    url: `${baseUrl}/post/${page.title_id}`,
     lastModified: page.post_date,
     priority: 1,
   }));
