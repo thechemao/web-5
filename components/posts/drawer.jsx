@@ -8,6 +8,7 @@ import Filtros from './filter';
 
 export default function PostDrawer({tipos}){
   const [open, setOpen] = useState(false)
+
   return(
     <div className="w-full bg-stone-800 md:hidden block mb-2">
       <button

@@ -1,10 +1,10 @@
 import Filtros from "./filter"
-import { sql } from "@vercel/postgres";
+import pool from "@/lib/db";
 
 async function getTypes(){
   const sqlQuery = 'SELECT * FROM types'
   try {
-    const result = await sql.query(sqlQuery);
+    const result = await pool.query(sqlQuery);
     return result.rows
   } catch (error) {
     return [];

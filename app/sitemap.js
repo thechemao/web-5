@@ -35,6 +35,11 @@ export default async function sitemap() {
       lastModified: new Date(),
       priority: 0.4,
     },
+        {
+      url: `${baseUrl}/contacto`,
+      lastModified: new Date(),
+      priority: 0.4,
+    },
   ];
 
   const postEntries = pages.map((page) => ({

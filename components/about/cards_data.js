@@ -1,10 +1,5 @@
 export const cards = 
 [
-  {
-    title: "Sobre mí",
-    description: "Soy una persona curiosa, autodidacta y apasionada por la tecnología. Me encanta resolver problemas, adaptarme a nuevos entornos y mejorar continuamente.",
-    icon: ""
-  },
   {  
     title: "Aptitudes",
     items: [

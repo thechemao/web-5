@@ -1,4 +1,5 @@
 "use client"
+
 import { useSearchParams, usePathname, useRouter } from "next/navigation"
 import { useDebouncedCallback } from 'use-debounce';
 
@@ -56,48 +57,57 @@ export default function Filtros({tipos}) {
     replace(`${pathName}?${params.toString()}`)
   }
 
+  const handleSubmit = (event) => {
+    const value = event.target.value
+    console.log("send submit")
+    console.log(value)
+    event.preventDefault()
+    //handleChangeSearch()
+    //handleChangeOrderMethod()
+    //handleChangeType()
+  }
+
   return(
     <div className="w-full">
-      <form>
-        <label className="mb-8 text-sm" htmlFor="search">Buscar: </label ><br />
-        <input type="text" id="search"
-          onChange={(e) => handleChangeSearch(e)}
-          defaultValue={SearchParams.get('search')}
-          className='input'
-        />
-        <p className="mt-4 mb-2 text-sm">Tipos: </p>
+      <label className="mb-8 text-sm" htmlFor="search">Buscar: </label ><br />
+      <input type="text" id="search"
+        onChange={(e) => handleChangeSearch(e)}
+        defaultValue={SearchParams.get('search')}
+        className='input'
+      />
+      <p className="mt-4 mb-2 text-sm">Tipos: </p>
 
-        {tipos.map(tipo => {return(
-          <div key={tipo.id}>
-            <input type="radio" name='tipos' id={tipo.type_name}
-              onChange={(e) => handleChangeType(e)}
-              value={tipo.id} checked={SearchParams.get('type') == tipo.id? true : false }
-              className='radio'
-            />
-            <label htmlFor={tipo.type_name} className="pl-2 text-[16px] font-mono">{tipo.type_name}</label>
-          </div>
-        )})}
+      {tipos.map(tipo => {
+        return(
+        <div key={tipo.id}>
+          <input type="radio" name='tipos' id={tipo.type_name}
+            onChange={(e) => handleChangeType(e)}
+            value={tipo.id} checked={SearchParams.get('type') == tipo.id? true : false }
+            className='radio'
+          />
+          <label htmlFor={tipo.type_name} className="pl-2 text-[16px] font-mono">{tipo.type_name}</label>
+        </div>
+      )})}
 
-        <p className="mt-4 mb-2 text-sm">Orden: </p>
-        <input type="radio" name='order' id="asc" value="asc"
-          onChange={(e) => handleChangeOrderMethod(e)}
-          checked={SearchParams.get('orderMethod') == 'asc'? true : false }
-          className='radio'
-        />
-        <label htmlFor="asc" className="pl-2 text-[16px] font-mono">ascendente</label>
-        <br />
-        <input type="radio" name='order' id="desc" value="desc"
-          onChange={(e) => handleChangeOrderMethod(e)}
-          checked={SearchParams.get('orderMethod') == 'desc' ||
-            SearchParams.get('orderMethod') == null ?
-            true : false
-          }
-          className='radio'
-        />
-        <label htmlFor="desc" className="pl-2 text-[16px] font-mono">descendente</label>
+      <p className="mt-4 mb-2 text-sm">Orden: </p>
+      <input type="radio" name='order' id="asc" value="asc"
+        onChange={(e) => handleChangeOrderMethod(e)}
+        checked={SearchParams.get('orderMethod') == 'asc'? true : false }
+        className='radio'
+      />
+      <label htmlFor="asc" className="pl-2 text-[16px] font-mono">ascendente</label>
+      <br />
+      <input type="radio" name='order' id="desc" value="desc"
+        onChange={(e) => handleChangeOrderMethod(e)}
+        checked={SearchParams.get('orderMethod') == 'desc' ||
+          SearchParams.get('orderMethod') == null ?
+          true : false
+        }
+        className='radio'
+      />
+      <label htmlFor="desc" className="pl-2 text-[16px] font-mono">descendente</label>
 
-        <button onClick={(e) => handleclickClear(e)} value={'Todo'} className="border-2 rounded-lg border-sky-500 hover:bg-slate-500 duration-200 w-full mt-4 p-2 text-sm">Limpiar</button>
-      </form>
+      <button onClick={(e) => handleclickClear(e)} className="border-2 rounded-lg border-sky-500 hover:bg-slate-500 duration-200 w-full mt-4 p-2 text-sm">Limpiar</button>
     </div>
   )
 }

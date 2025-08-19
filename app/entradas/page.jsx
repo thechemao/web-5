@@ -2,7 +2,7 @@ import PostDrawer from "@/components/posts/drawer";
 import MyPagination from "@/components/posts/pagination";
 import Tarjetas from "@/components/posts/tarjetas";
 import styles from '@/styles/scroll.module.css'
-import { sql } from "@vercel/postgres";
+import pool from "@/lib/db";
 export const dynamic = 'force-dynamic';
 
 async function getMoreProyectos(request){
@@ -24,8 +24,7 @@ async function getMoreProyectos(request){
     sqlQuery += ' ORDER BY post_date DESC;'
   }
   try {
-    const result =
-      await sql.query(sqlQuery, parametersArray);
+    const result = await pool.query(sqlQuery, parametersArray);
     return result.rows;
   } catch (error) {
     return error;
@@ -33,10 +32,8 @@ async function getMoreProyectos(request){
 }
 
 async function getTypes(){
-  let sqlQuery = 'SELECT * FROM types'
   try {
-    const result =
-      await sql.query(sqlQuery);
+    const result = await pool.query('SELECT * FROM types');
     return result.rows;
   } catch (error) {
     console.log(error)
