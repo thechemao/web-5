@@ -34,5 +34,5 @@ export default async function Post ({ params }) {
 }
 
 export function generateStaticParams() {
-  return [{ slug: 'welcome' }, { slug: 'about' }]
+  return [{ slug: 'welcome' }]
 }
