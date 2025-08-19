@@ -1,9 +1,8 @@
-import { sql } from '@vercel/postgres';
+import pool from "@/lib/db";
 
-async function getProyectos(request) {
+async function getProyectos() {
   try {
-    const result =
-      await sql`SELECT * FROM posts;`;
+    const result = await pool.query(`SELECT * FROM posts`);
     return result.rows;
   } catch (error) {
     return error;
