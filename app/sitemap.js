@@ -3,9 +3,10 @@ import pool from "@/lib/db";
 async function getProyectos() {
   try {
     const result = await pool.query(`SELECT * FROM posts`);
+    console.log(result.rows);
     return result.rows;
   } catch (error) {
-    return error;
+    return [];
   }
 }
 
